@@ -1,0 +1,20 @@
+from src.maze import Maze
+from src.pathfinder import Pathfinder
+
+maze = Maze()
+maze.load_from_csv("data/example_maze.csv")
+
+pathfinder = Pathfinder(maze)
+start = (0, 0)
+goal = (maze.grid.shape[0] - 1, maze.grid.shape[1] - 1)
+path = pathfinder.find_path(start, goal)
+
+if path:
+    print("Path found")
+    print(path)
+    maze.plot_path(path)
+    maze.save_path(path)
+    print("Path saved to output_path.csv.")
+else:
+    print("Not existing path")
+    
